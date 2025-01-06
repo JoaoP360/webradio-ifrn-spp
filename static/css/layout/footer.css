@@ -5,11 +5,12 @@
     background-color: var(--color-11);
     color: var(--text-color);
     text-align: center;
-    padding: 10px 0;
+    padding: 40px 0;
     font-size: 1rem;
-    font-family: Poppins;
+    font-family: Poppins, sans-serif;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    position: relative; 
 }
 
 .footer p {
@@ -41,7 +42,7 @@
 }
 
 .footer-channels img {
-    max-width: 100px;
+    max-width: 150px;
     margin-bottom: 10px;
 }
 
@@ -59,17 +60,19 @@
 }
 
 .footer-socials {
-    text-align: center;
-    margin-bottom: 20px;
+    position: absolute; /* Permite o posicionamento no canto superior direito */
+    top: 20px; /* Ajusta a posição vertical */
+    right: 20px; /* Ajusta a posição horizontal */
+    text-align: right;
+    padding-right: 50px;
 }
 
 .footer-socials h3 {
-    font-size: 20px;
+    font-size: 1.5rem;
     text-transform: uppercase;
-    margin-bottom: 10px;
-    text-align: left;
+    margin: 0; /* Remove margens adicionais */
+    color: white;
 }
-
 .footer-socials .social-icons {
     display: flex;
     justify-content: center;
