@@ -67,12 +67,10 @@
     padding-right: 50px;
 }
 
-.footer-socials h3 {
+footer .socials h3{
     font-size: 1.5rem;
     text-transform: uppercase;
-    margin: 0;
-    color: white;
-}
+  }
 .footer-socials .social-icons {
     display: flex;
     justify-content: center;
