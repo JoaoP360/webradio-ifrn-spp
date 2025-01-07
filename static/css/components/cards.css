@@ -12,6 +12,7 @@
 }
 
 .program-img {
+    max-width: 300px;
     object-fit: cover;
     aspect-ratio: 1/1;
 }
@@ -22,7 +23,7 @@
 }
 
 .img-container {
-    padding-right: 1rem;
+    /* padding-right: 1rem; */
     padding-bottom: 1rem;
 }
 
@@ -37,14 +38,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--color-13);
+    background: var(--color-35);
     border-radius: 20px;
 }
 
-.card-carousel:hover {
+/* .card-carousel:hover {
     transform: scale(1.01);
     transition: var(--tran-03);
-}
+} */
 
 .cb-avisos {
     align-items: center;
