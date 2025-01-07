@@ -60,9 +60,9 @@
 }
 
 .footer-socials {
-    position: absolute; /* Permite o posicionamento no canto superior direito */
-    top: 20px; /* Ajusta a posição vertical */
-    right: 20px; /* Ajusta a posição horizontal */
+    position: absolute; 
+    top: 20px;
+    right: 20px; 
     text-align: right;
     padding-right: 50px;
 }
@@ -70,7 +70,7 @@
 .footer-socials h3 {
     font-size: 1.5rem;
     text-transform: uppercase;
-    margin: 0; /* Remove margens adicionais */
+    margin: 0;
     color: white;
 }
 .footer-socials .social-icons {
