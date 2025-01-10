@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 from .models import Program, WarningCard, ProfileCard, ImageCarousel, AboutRadio, ProgramEp, Pedidos, Calendar
 from django.contrib.auth.decorators import login_required
+from django.utils.timezone import now
 from django.contrib.auth.forms import UserCreationForm
 from .forms import ProgramForm, UserForm, ImageCarouselForm, WarningCardForm, AboutRadioForm, ProfileCardForm, PedidosForm, ProgramEpForm, CalendarForm
 from django.contrib.auth import authenticate, login
@@ -17,6 +19,7 @@ def index(request):
 def admin_system(request):
     profilecards = ProfileCard.objects.all()
     return render(request, 'system/index.html', {'profilecards': profilecards})
+
 
 # ========== CRUD INICIO ==========
 # ===== CARROSEL =====
@@ -337,7 +340,7 @@ def pedidos_create(request):
     }
     return render(request, 'music-requests/form.html', context)
 
-## View pega o pk do pedido, muda pra aprovado
+# ## View pega o pk do pedido, muda pra aprovado
 def pedido_aceito(request, pk):
     pedido = get_object_or_404(Pedidos, pk=pk)
 
@@ -377,6 +380,21 @@ def pedidos_delete(request, pk):
     return render(request,'form-delete.html', context)
 
 # CALENDARIO
+def calendar_create(request):
+    if request.method == "POST":
+        form = CalendarForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('calendar_list')
+    else:
+        form = CalendarForm()
+
+    context = {
+        'form': form,
+        'title':'CRIAR EVENTO'
+    }
+    return render(request, 'form.html', context)
+
 def calendar(request):
     context = {}
     events = Calendar.objects.all()
@@ -385,6 +403,21 @@ def calendar(request):
     context['programs'] = programs
 
     return render(request, 'calendar/calendar.html', context)
+
+def calendar_update(request, pk):
+    event = get_object_or_404(Calendar, pk=pk)
+    if request.method == "POST":
+        form = CalendarForm(request.POST, instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('calendar_list')
+    else:
+        form = CalendarForm(instance=event)
+    context = {
+        'form': form,
+        'title':  f"Editar o evento {event}"
+    }
+    return render(request, 'form.html', context)
 
 #LIST
 def calendar_list(request):
@@ -402,7 +435,19 @@ def calendar_list(request):
         'form': form,
         'calendar': calendar,
     }
-    return render(request, 'calendar/calendar.html', context)
+    return render(request, 'system/calendar/calendar-list.html', context)
+
+def calendar_delete(request, pk):
+    calendar = get_object_or_404(Calendar, pk=pk)
+    if request.method == 'POST':
+        calendar.delete()
+        return redirect('calendar_list')
+    context = {
+        'object': calendar,
+        'title':f"Deletar o evento {calendar}",
+        'message':f"Tem certeza que deseja deletar o evento {calendar}?"
+    }
+    return render(request,'form-delete.html', context)
 
 # ===== AUTH =====
 # Register
